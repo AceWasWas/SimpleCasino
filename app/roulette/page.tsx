@@ -1,6 +1,5 @@
-import GamePagePlaceholder from "@/components/GamePagePlaceholder";
-import { getGame } from "@/lib/games";
+import RouletteGame from "@/components/roulette/RouletteGame";
 
 export default function RoulettePage() {
-  return <GamePagePlaceholder game={getGame("roulette")!} />;
+  return <RouletteGame />;
 }
