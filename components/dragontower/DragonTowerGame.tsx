@@ -162,13 +162,13 @@ export default function DragonTowerGame() {
         </div>
       </div>
 
-      <div className="mb-6 flex flex-col gap-2">
+      <div className="mx-auto mb-6 flex flex-col gap-2" style={{ maxWidth: 404 }}>
         {Array.from({ length: FLOORS }, (_, i) => FLOORS - 1 - i).map((floorIndex) => (
           <div key={floorIndex} className="flex items-center gap-3">
             <span className="w-14 shrink-0 text-right text-xs font-semibold text-navy-400">
               Floor {floorIndex + 1}
             </span>
-            <div className="grid flex-1 grid-cols-4 gap-2">
+            <div className="grid grid-cols-4 gap-2" style={{ width: 336 }}>
               {Array.from({ length: TILES_PER_FLOOR }, (_, tileIndex) => {
                 const { icon, cls } = tileVisual(floorIndex, tileIndex);
                 const disabled =
