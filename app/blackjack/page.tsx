@@ -1,6 +1,5 @@
-import GamePagePlaceholder from "@/components/GamePagePlaceholder";
-import { getGame } from "@/lib/games";
+import BlackjackTable from "@/components/blackjack/BlackjackTable";
 
 export default function BlackjackPage() {
-  return <GamePagePlaceholder game={getGame("blackjack")!} />;
+  return <BlackjackTable />;
 }
