@@ -105,9 +105,26 @@ export default function DragonTowerGame() {
 
   function tileVisual(floorIndex: number, tileIndex: number): { icon: string; cls: string } {
     const cleared = floorIndex < currentFloor;
-    const isBustedFloor = phase === "ended" && outcome === "lose" && floorIndex === currentFloor;
-    const isActiveFloor = phase === "playing" && floorIndex === currentFloor;
     const pickedTile = picks[floorIndex];
+    const isFatalTile =
+      phase === "ended" &&
+      outcome === "lose" &&
+      floorIndex === currentFloor &&
+      tileIndex === pickedTile;
+
+    if (phase === "ended") {
+      // Round is over — reveal every floor's bombs and gems, not just the ones reached.
+      if (cleared && tileIndex === pickedTile) {
+        return { icon: "💎", cls: "bg-primary-500/20 text-primary-300 border-primary-500" };
+      }
+      if (isFatalTile) {
+        return { icon: "💣", cls: "bg-red-600 text-white border-red-500" };
+      }
+      const isBomb = towerBombs[floorIndex]?.has(tileIndex) ?? false;
+      return isBomb
+        ? { icon: "💣", cls: "bg-red-900/40 text-red-300 border-red-800/60" }
+        : { icon: "💎", cls: "bg-primary-500/10 text-primary-400/70 border-primary-800/40" };
+    }
 
     if (cleared) {
       if (tileIndex === pickedTile) {
@@ -116,18 +133,7 @@ export default function DragonTowerGame() {
       return { icon: "", cls: "bg-navy-800/60 border-navy-700" };
     }
 
-    if (isBustedFloor) {
-      const isBomb = towerBombs[floorIndex]?.has(tileIndex) ?? false;
-      if (tileIndex === pickedTile) {
-        return { icon: "💣", cls: "bg-red-600 text-white border-red-500" };
-      }
-      if (isBomb) {
-        return { icon: "💣", cls: "bg-red-900/40 text-red-300 border-red-800/60" };
-      }
-      return { icon: "💎", cls: "bg-primary-500/10 text-primary-400/70 border-primary-800/40" };
-    }
-
-    if (isActiveFloor) {
+    if (phase === "playing" && floorIndex === currentFloor) {
       return { icon: "", cls: "bg-navy-800 border-navy-700 hover:bg-navy-700" };
     }
 
