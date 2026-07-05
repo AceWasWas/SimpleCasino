@@ -1,6 +1,5 @@
-import GamePagePlaceholder from "@/components/GamePagePlaceholder";
-import { getGame } from "@/lib/games";
+import DragonTowerGame from "@/components/dragontower/DragonTowerGame";
 
 export default function DragonTowerPage() {
-  return <GamePagePlaceholder game={getGame("dragon-tower")!} />;
+  return <DragonTowerGame />;
 }
