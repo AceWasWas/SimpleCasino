@@ -1,6 +1,5 @@
-import GamePagePlaceholder from "@/components/GamePagePlaceholder";
-import { getGame } from "@/lib/games";
+import MinesGame from "@/components/mines/MinesGame";
 
 export default function MinesweeperPage() {
-  return <GamePagePlaceholder game={getGame("minesweeper")!} />;
+  return <MinesGame />;
 }
